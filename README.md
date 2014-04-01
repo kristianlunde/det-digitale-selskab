@@ -16,7 +16,7 @@ right corner.
 After Github creates your own version of the repository, git clone it:
 
 ```bash
-git clone https://github.com/<your user name>/det-digitale-selskab
+git clone git@github.com:<your username>/det-digitale-selskab.git
 ```
     
 ### composer install --no-dev -o
@@ -86,4 +86,46 @@ you should see a complete rendered version of information from our Meetup page!
 
 .. then it's time get those mockups and bleeding edge designs going!
 
+### Branch the cloned repository
+
+As you want to start developing the site, the suggested method is to create a 
+feature branch in git. This tutorial was developed that way, and it'll allow you
+to keep the changes in a separate state, away from the master version of the
+project. It'll also allow you to easily request your updates ported into the 
+original repository by issuing a pull request on github.
+
+I've used "add-installation-instructions" as the branch name when actually
+running these commands. Replace <branch-name> with your own branch name.
+
+```
+git checkout -b <branch-name>
+```
+
+Make the changes and show the world how stuff should look in 2014, before
+committing the changes. To see which files have been modified, run `git commit`
+without any arguments.
+
+You can then either commit each file by itself, or do `git commit -a` to commit 
+all files. Warning: The last command WILL commit the Meetup API key if you've
+changed index.php, so be CAREFUL.
+
+After committing, you'll need to push the feature branch to your github account.
+
+```
+git push -u origin <branch-name>
+``` 
+
+#### Example
+
+```
+git push -u origin add-installation-instructions
+Counting objects: 5, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.66 KiB | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To git@github.com:<your username>/det-digitale-selskab.git
+ * [new branch]      add-installation-instructions -> add-installation-instructions
+Branch add-installation-instructions set up to track remote branch add-installation-instructions from origin.
+```
 
