@@ -1,0 +1,8 @@
+# enable mod_rewrite
+RewriteEngine on
+
+# set testing accounts
+RewriteRule ^seanhood$ /test_index.php [L]
+RewriteRule ^sudosushi$ /test_index.php [L]
+RewriteRule ^chris$ /test_index.php [L]
+RewriteRule ^beta$ /test_index.php [L] 

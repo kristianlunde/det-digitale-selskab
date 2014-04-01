@@ -1,0 +1,15 @@
+{
+    "name": "Det digitale selskab web site",
+    "description": "",
+    "authors": [
+        {
+            "name": "Kristian Lunde",
+            "email": "kristian@brandsafe.no"
+        }
+    ],
+    
+    "require": {
+        "dms/meetup-api-client": "1.0.*@dev"
+
+    }
+}
