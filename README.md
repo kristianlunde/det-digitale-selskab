@@ -71,14 +71,19 @@ code, as it will allow any user that has the key to make requests on behalf
 of your own account. You can reset the key on the same page if you happen to do
 just that..
 
-Currently you'll have to edit `public/index.php` to set up your Meetup key in the
-application (we'll probably change this in the future, so watch for updates on
-the repository).
+To configure the application, create `config.php` in the `config/` directory.
+Take a look at `config.default.php` to see available settings, and if you want
+to define your own setting / value for one of the options, do so in `config.php`.
 
-Find the line `define()`-ing the key, and add your own key.
+`config.php` is a local configuration file and is ignored by git, so hopefully
+your local settings should not bleed into the repositories. Example of the
+contents of `config.php` if you're just changing the `MEETUP_KEY`:
 
 ```
-define('MEETUP_KEY', 'xxxx...................');
+<?php
+return array(
+    'MEETUP_KEY' => 'xxxx................',
+);
 ```
 
 Reload the page in your webbrowser, and if everything went according to plan,
