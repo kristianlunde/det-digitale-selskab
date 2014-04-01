@@ -2,9 +2,15 @@
 //Load bootstrapper
 #require realpath(dirname(__FILE__)) . '/../protected/bootstrap.php';
 define('APP_ROOT', realpath(dirname(__FILE__)) . '/../app/');
-define('PUBLIC_URL', 'http://det.digitaleselskab.org');
+define('CONFIG_ROOT', APP_ROOT . '/../config');
 
-define('MEETUP_KEY', '<PUT YOUR MEETUP KEY HERE>');
+$config = require CONFIG_ROOT . '/config.default.php';
+
+if (file_exists(CONFIG_ROOT . '/config.php'))
+{
+    $userConfig = require CONFIG_ROOT . '/config.php';
+    $config = array_merge($config, $userConfig);
+}
 
 require APP_ROOT . 'language/Norwegian.php';
 require APP_ROOT . '/../vendor/autoload.php';
@@ -14,7 +20,7 @@ Language::SetLanguage($language);
 
 use DMS\Service\Meetup\MeetupKeyAuthClient;
 
-$meetupClient = MeetupKeyAuthClient::factory(array('key' => MEETUP_KEY));
+$meetupClient = MeetupKeyAuthClient::factory(array('key' => $config['MEETUP_KEY']));
 $events = $meetupClient->getEvents(array('group_urlname' => 'Det-Digitale-Selskab'));
 
 $ddsEvent = array();
@@ -41,8 +47,8 @@ header("Content-type: text/html; charset=utf-8");
 
 	<title><?php echo Language::Get('SITE-HEADER'); ?> &mdash; <?php echo Language::Get('SITE-STRAPLINE') . ' ' . Language::Get('SITE-TITLE-KEYWORDS'); ?></title>
 	
-	<link rel="icon" type="<?php echo PUBLIC_URL; ?>/image/png" href="/images/icon.png" />
-	<link rel="apple-touch-icon" href="<?php echo PUBLIC_URL; ?>/images/app-icon.png" />
+	<link rel="icon" type="<?php echo $config['PUBLIC_URL']; ?>/image/png" href="/images/icon.png" />
+	<link rel="apple-touch-icon" href="<?php echo $config['PUBLIC_URL']; ?>/images/app-icon.png" />
 	
 	<link rel='stylesheet' href='styles/reset.css' />
 	<link rel='stylesheet' href='styles/main.css.php' />
@@ -146,9 +152,9 @@ header("Content-type: text/html; charset=utf-8");
 
 		<div id='pint'>
 		
-			<img id='foam' src='<?php echo PUBLIC_URL; ?>/images/pint-foam.png' width='220' height='340' />
-			<img id='beer' src='<?php echo PUBLIC_URL; ?>/images/pint-beer.png' width='220' height='340' />
-			<img id='overlay' src='<?php echo PUBLIC_URL; ?>/images/pint-overlay-new.png' width='220' height='340' />
+			<img id='foam' src='<?php echo $config['PUBLIC_URL']; ?>/images/pint-foam.png' width='220' height='340' />
+			<img id='beer' src='<?php echo $config['PUBLIC_URL']; ?>/images/pint-beer.png' width='220' height='340' />
+			<img id='overlay' src='<?php echo $config['PUBLIC_URL']; ?>/images/pint-overlay-new.png' width='220' height='340' />
 		
 		</div>
 		
@@ -181,8 +187,8 @@ header("Content-type: text/html; charset=utf-8");
 		</div>
 	
 	</div>
-	<script src='<?php echo PUBLIC_URL; ?>/scripts/jquery-1.4.2.min.js'></script>
-	<script src='<?php echo PUBLIC_URL; ?>/scripts/pint.js'></script>
+	<script src='<?php echo $config['PUBLIC_URL']; ?>/scripts/jquery-1.4.2.min.js'></script>
+	<script src='<?php echo $config['PUBLIC_URL']; ?>/scripts/pint.js'></script>
 	<script type="text/javascript">
 
   var _gaq = _gaq || [];
