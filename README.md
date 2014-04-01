@@ -109,11 +109,16 @@ You can then either commit each file by itself, or do `git commit -a` to commit
 all files. Warning: The last command WILL commit the Meetup API key if you've
 changed index.php, so be CAREFUL.
 
-After committing, you'll need to push the feature branch to your github account.
+After committing, you'll need to push the new feature branch to your github 
+account.
 
 ```
 git push -u origin <branch-name>
 ``` 
+
+After pushing for the first time you can do just `git push origin` as the 
+branch is now tracked on both sides of your setup.
+
 
 #### Example
 
